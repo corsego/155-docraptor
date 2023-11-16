@@ -1,0 +1,43 @@
+<%= form_with(model: invoice) do |form| %>
+  <% if invoice.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(invoice.errors.count, "error") %> prohibited this invoice from being saved:</h2>
+
+      <ul>
+        <% invoice.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :email, style: "display: block" %>
+    <%= form.text_field :email, list: 'default-countries', placeholder: "select or add new" %>
+    <datalist id="default-countries">
+      <% Invoice.pluck(:email).uniq.each do |x| %>
+        <option value="<%= x %>"></option>
+      <% end %>
+    </datalist>
+    <%#= form.text_field :email %>
+  </div>
+
+  <div>
+    <%= form.label :product, style: "display: block" %>
+    <%= form.select :product, ["IT consulting", "Accounting"], { include_blank: true } %>
+  </div>
+
+  <div>
+    <%= form.label :price, style: "display: block" %>
+    <%= form.number_field :price %>
+  </div>
+
+  <div>
+    <%= form.label :quantity, style: "display: block" %>
+    <%= form.number_field :quantity %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,30 @@
+<div id="<%= dom_id invoice %>" style="border: 1px solid black; padding: 12px;">
+  <p>
+    <strong>Email:</strong>
+    <%= invoice.email %>
+  </p>
+
+  <p>
+    <strong>Product:</strong>
+    <%= invoice.product %>
+  </p>
+
+  <p>
+    <strong>Price:</strong>
+    <%= invoice.price %>
+  </p>
+
+  <p>
+    <strong>Quantity:</strong>
+    <%= invoice.quantity %>
+  </p>
+
+  <p>
+    <strong>Total:</strong>
+    <%= invoice.total %>
+  </p>
+
+  <p>
+    <%= link_to "Show this invoice", invoice %>
+  </p>
+</div>
