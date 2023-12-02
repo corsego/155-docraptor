@@ -1,1 +1,11 @@
 <%= render @invoice %>
+
+<% if @invoice.pdf_document.attached? %>
+<% if @invoice.pdf_document.representable? %>
+  <%= image_tag @invoice.pdf_document.representation(resize_to_limit: [200, 200]) %>
+<% end %>
+<%= @invoice.pdf_document.blob.filename %>
+<%= number_to_human_size @invoice.pdf_document.blob.byte_size %>
+<%= link_to 'Open in new tab', rails_blob_path(@invoice.pdf_document, disposition: "inline"), target: :_blank %>
+<%= link_to 'Download', rails_blob_path(@invoice.pdf_document, disposition: "attachment") %>
+<% end %>

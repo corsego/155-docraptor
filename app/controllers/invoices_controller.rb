@@ -16,6 +16,7 @@ class InvoicesController < ApplicationController
 
     respond_to do |format|
       if @invoice.save
+        InvoicePdfJob.perform_now(@invoice)
         format.html { redirect_to invoice_url(@invoice), notice: "Invoice was successfully created." }
       else
         format.html { render :new, status: :unprocessable_entity }
